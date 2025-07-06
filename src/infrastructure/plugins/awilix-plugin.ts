@@ -11,7 +11,7 @@ async function awilixPlugin(fastify: FastifyInstance) {
   fastify.register(fastifyAwilixPlugin, {
     container,
     disposeOnClose: true,
-    disposeOnResponse: false
+    disposeOnResponse: true,
   });
 }
 
