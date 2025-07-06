@@ -3,5 +3,3 @@ export class HelloWorldController {
         return { hello: 'world' }
     }
 }
-
-export default new HelloWorldController()

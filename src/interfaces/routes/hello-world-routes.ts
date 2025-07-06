@@ -1,7 +1,9 @@
 import { FastifyInstance } from "fastify"
-import helloWorldController from "../controllers/hello-world-controller"
 
 async function helloWorldRoutes(fastify: FastifyInstance, options: any) {
+    // Get the controller from the DI container
+    const { helloWorldController } = fastify.diContainer.cradle;
+
     fastify.get('/', async (request, reply) => {
         return helloWorldController.getHelloWorld()
     })
