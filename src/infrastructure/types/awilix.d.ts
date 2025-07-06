@@ -1,4 +1,3 @@
-import { HelloWorldController } from '../../interfaces/controllers/hello-world-controller';
 import { UserController } from '../../interfaces/controllers/user.controller';
 import { ProductController } from '../../interfaces/controllers/product.controller';
 import { OrderController } from '../../interfaces/controllers/order.controller';
@@ -24,7 +23,6 @@ import { DeleteOrderUseCase } from '../../application/use-cases/order/delete-ord
 
 export interface AwilixCradle {
     // Controllers
-    helloWorldController: HelloWorldController;
     userController: UserController;
     productController: ProductController;
     orderController: OrderController;

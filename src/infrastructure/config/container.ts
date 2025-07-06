@@ -32,7 +32,6 @@ import { DeleteOrderUseCase } from '../../application/use-cases/order/delete-ord
 import { UserController } from '../../interfaces/controllers/user.controller';
 import { ProductController } from '../../interfaces/controllers/product.controller';
 import { OrderController } from '../../interfaces/controllers/order.controller';
-import { HelloWorldController } from '../../interfaces/controllers/hello-world-controller';
 
 export function createDIContainer(): AwilixContainer<AwilixCradle> {
   const container = createContainer({
@@ -79,7 +78,6 @@ export function createDIContainer(): AwilixContainer<AwilixCradle> {
     userController: asClass(UserController).singleton(),
     productController: asClass(ProductController).singleton(),
     orderController: asClass(OrderController).singleton(),
-    helloWorldController: asClass(HelloWorldController).singleton()
   });
 
   return container;
