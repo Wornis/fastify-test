@@ -28,11 +28,11 @@ export class UserController {
         try {
             const { id } = request.params;
             const user = await this.getUserByIdUseCase.execute(id);
-            
+
             if (!user) {
                 return reply.code(404).send({ error: 'User not found' });
             }
-            
+
             return reply.code(200).send(user);
         } catch (error) {
             request.log.error(error);
@@ -40,9 +40,10 @@ export class UserController {
         }
     }
 
-    async createUser(request: FastifyRequest, reply: FastifyReply) {
+    async createUser(request: FastifyRequest<{ Body: { name: string; email: string; password: string } }>, reply: FastifyReply) {
         try {
-            const userData = request.body as any;
+            // The request body is already validated by TypeBox
+            const userData = request.body;
             const user = await this.createUserUseCase.execute(userData);
             return reply.code(201).send(user);
         } catch (error) {
@@ -51,17 +52,21 @@ export class UserController {
         }
     }
 
-    async updateUser(request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
+    async updateUser(request: FastifyRequest<{ 
+        Params: { id: string },
+        Body: { name?: string; email?: string; password?: string }
+    }>, reply: FastifyReply) {
         try {
             const { id } = request.params;
-            const userData = request.body as any;
-            
+            // The request body is already validated by TypeBox
+            const userData = request.body;
+
             const user = await this.updateUserUseCase.execute(id, userData);
-            
+
             if (!user) {
                 return reply.code(404).send({ error: 'User not found' });
             }
-            
+
             return reply.code(200).send(user);
         } catch (error) {
             request.log.error(error);
@@ -73,11 +78,11 @@ export class UserController {
         try {
             const { id } = request.params;
             const deleted = await this.deleteUserUseCase.execute(id);
-            
+
             if (!deleted) {
                 return reply.code(404).send({ error: 'User not found' });
             }
-            
+
             return reply.code(204).send();
         } catch (error) {
             request.log.error(error);
