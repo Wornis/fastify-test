@@ -9,11 +9,6 @@ export class CreateOrderUseCase {
     ) {}
 
     async execute(orderData: Omit<Order, 'id'>): Promise<Order | null> {
-        // In a real application, we would:
-        // 1. Check if the user exists
-        // 2. Check if the product exists and has enough stock
-        // 3. Create a transaction to ensure atomicity
-
         // Get the product to check stock
         const product = await this.productRepository.findById(orderData.productId);
         
